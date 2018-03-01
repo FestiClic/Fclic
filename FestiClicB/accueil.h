@@ -18,6 +18,13 @@ public:
     explicit Accueil(QWidget *parent = 0);
     ~Accueil();
 
+private slots:
+    void on_aBtnMAJUtilisateur_clicked();
+
+    void on_aBtnEnregistrerUtilisateur_clicked();
+
+    void on_aBtnSupprimUtilisateur_clicked();
+
 private:
     Ui::Accueil *ui;
 };

@@ -32,11 +32,14 @@ public:
     QLabel *aLabEtat;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
+    QLineEdit *aLEditIdUtilisateur;
     QLineEdit *aLEditNom;
     QLineEdit *aLEditPrenom;
     QLineEdit *aLEditUsername;
     QLineEdit *aLEditPassword;
     QPushButton *aBtnEnregistrerUtilisateur;
+    QPushButton *aBtnMAJUtilisateur;
+    QPushButton *aBtnSupprimUtilisateur;
     QWidget *tab_2;
 
     void setupUi(QDialog *Accueil)
@@ -58,6 +61,11 @@ public:
         verticalLayout = new QVBoxLayout(verticalLayoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        aLEditIdUtilisateur = new QLineEdit(verticalLayoutWidget);
+        aLEditIdUtilisateur->setObjectName(QStringLiteral("aLEditIdUtilisateur"));
+
+        verticalLayout->addWidget(aLEditIdUtilisateur);
+
         aLEditNom = new QLineEdit(verticalLayoutWidget);
         aLEditNom->setObjectName(QStringLiteral("aLEditNom"));
 
@@ -80,7 +88,13 @@ public:
 
         aBtnEnregistrerUtilisateur = new QPushButton(tab);
         aBtnEnregistrerUtilisateur->setObjectName(QStringLiteral("aBtnEnregistrerUtilisateur"));
-        aBtnEnregistrerUtilisateur->setGeometry(QRect(410, 320, 75, 23));
+        aBtnEnregistrerUtilisateur->setGeometry(QRect(270, 320, 181, 23));
+        aBtnMAJUtilisateur = new QPushButton(tab);
+        aBtnMAJUtilisateur->setObjectName(QStringLiteral("aBtnMAJUtilisateur"));
+        aBtnMAJUtilisateur->setGeometry(QRect(460, 320, 181, 23));
+        aBtnSupprimUtilisateur = new QPushButton(tab);
+        aBtnSupprimUtilisateur->setObjectName(QStringLiteral("aBtnSupprimUtilisateur"));
+        aBtnSupprimUtilisateur->setGeometry(QRect(370, 350, 171, 23));
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
@@ -95,11 +109,14 @@ public:
     {
         Accueil->setWindowTitle(QApplication::translate("Accueil", "Dialog", nullptr));
         aLabEtat->setText(QApplication::translate("Accueil", "Etat connexion", nullptr));
+        aLEditIdUtilisateur->setPlaceholderText(QApplication::translate("Accueil", "Id utilisateur", nullptr));
         aLEditNom->setPlaceholderText(QApplication::translate("Accueil", "Nom", nullptr));
         aLEditPrenom->setPlaceholderText(QApplication::translate("Accueil", "Prenom", nullptr));
         aLEditUsername->setPlaceholderText(QApplication::translate("Accueil", "Username", nullptr));
         aLEditPassword->setPlaceholderText(QApplication::translate("Accueil", "Password", nullptr));
-        aBtnEnregistrerUtilisateur->setText(QApplication::translate("Accueil", "Enregistrer", nullptr));
+        aBtnEnregistrerUtilisateur->setText(QApplication::translate("Accueil", "Enregistrer nouveau tilisateur", nullptr));
+        aBtnMAJUtilisateur->setText(QApplication::translate("Accueil", "MAJ Utilisateur", nullptr));
+        aBtnSupprimUtilisateur->setText(QApplication::translate("Accueil", "Supprimer utilisateur", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Accueil", "Tab 1", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Accueil", "Tab 2", nullptr));
     } // retranslateUi

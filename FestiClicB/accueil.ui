@@ -50,6 +50,13 @@
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
+       <widget class="QLineEdit" name="aLEditIdUtilisateur">
+        <property name="placeholderText">
+         <string>Id utilisateur</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QLineEdit" name="aLEditNom">
         <property name="placeholderText">
          <string>Nom</string>
@@ -82,14 +89,40 @@
     <widget class="QPushButton" name="aBtnEnregistrerUtilisateur">
      <property name="geometry">
       <rect>
-       <x>410</x>
+       <x>270</x>
        <y>320</y>
-       <width>75</width>
+       <width>181</width>
        <height>23</height>
       </rect>
      </property>
      <property name="text">
-      <string>Enregistrer</string>
+      <string>Enregistrer nouveau tilisateur</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="aBtnMAJUtilisateur">
+     <property name="geometry">
+      <rect>
+       <x>460</x>
+       <y>320</y>
+       <width>181</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>MAJ Utilisateur</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="aBtnSupprimUtilisateur">
+     <property name="geometry">
+      <rect>
+       <x>370</x>
+       <y>350</y>
+       <width>171</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Supprimer utilisateur</string>
      </property>
     </widget>
    </widget>
