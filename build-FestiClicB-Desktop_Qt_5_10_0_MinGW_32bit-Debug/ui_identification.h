@@ -71,6 +71,7 @@ public:
 
         iLEditMotDePasse = new QLineEdit(verticalLayoutWidget);
         iLEditMotDePasse->setObjectName(QStringLiteral("iLEditMotDePasse"));
+        iLEditMotDePasse->setEchoMode(QLineEdit::Password);
 
         verticalLayout->addWidget(iLEditMotDePasse);
 

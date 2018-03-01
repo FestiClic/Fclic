@@ -11,6 +11,15 @@ Accueil::Accueil(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    //---------------
+
+
+    //---------------
+    //Ajouter des éléments à ma comboBox
+    ui->a2CBox->addItem("Votre choix");
+    ui->a2CBox->addItem("Utilisateur");    //Pour test j'utlise la table utilisateur que je vais remplacer par d'autres tables
+    ui->a2CBox->addItem("2");
+
     Identification connexion;
     //test de connexion de bdd sur la seconde fenêtre
     if(connexion.openConnexion())
@@ -28,6 +37,7 @@ Accueil::~Accueil()
     delete ui;
 }
 
+//BOUTON inserer dans bdd
 void Accueil::on_aBtnEnregistrerUtilisateur_clicked()
 {
     //Au clic j'enregistre des information dans la table Utilisateurs + l'execussion de la requete
@@ -72,6 +82,7 @@ void Accueil::on_aBtnEnregistrerUtilisateur_clicked()
 
 }
 
+//BOUTON Mise a jour données en Bdd
 void Accueil::on_aBtnMAJUtilisateur_clicked()
 {
     Identification connexion; //création nouvel objet avec la classe identification
@@ -115,7 +126,7 @@ void Accueil::on_aBtnMAJUtilisateur_clicked()
 }
 
 
-
+//BOUTON supprimer données de Bdd
 void Accueil::on_aBtnSupprimUtilisateur_clicked()
 {
     Identification connexion;
@@ -150,12 +161,29 @@ void Accueil::on_aBtnSupprimUtilisateur_clicked()
     }
 }
 
-/*
-void Accueil::Accueil()
+
+
+//BOUTON Affecter les données à une TableView
+void Accueil::on_a2BtnAfficher_clicked()
 {
-    QMenu *menuFichier = menuBar()->addMenu("&Fichier");
-    QMenu *menuEdition = menuBar()->addMenu("&Edition");
-    QMenu *menuAffichage = menuBar()->addMenu("&Affichage");
+    Identification connexion;
+    QSqlQueryModel * modele = new QSqlQueryModel();  //Model de connexion pointeur modele
+
+    connexion.openConnexion();
+    QSqlQuery* query = new QSqlQuery(connexion.maBaseDeDonnee); //Création de la variable query qui pointe sur QSqlquery
+
+//**    //Si ma comboBox contient ma val affecter les données concernées dans la TableView
+//**    if(ui->a2CBox->currentTextChanged("Utilisateur"))
+//**    {
+    query->prepare("SELECT IdUtilisateur, NomUtilisateur, PrenomUtilisateur FROM Utilisateurs");
+
+    query->exec();  //Execution requete
+    modele->setQuery(*query);    //Récuperation des valeurs pointeur de requete
+    ui->a2TabView->setModel(modele);     //Envoyer les données dans la TableView
+
+    //fermeture de la connexion
+    connexion.closeConnexion();
+    qDebug() << (modele->rowCount());
+//**    }
 }
 
-*/

@@ -45,6 +45,9 @@
       </item>
       <item>
        <widget class="QLineEdit" name="iLEditMotDePasse">
+        <property name="echoMode">
+         <enum>QLineEdit::Password</enum>
+        </property>
         <property name="placeholderText">
          <string>Mot de passe</string>
         </property>

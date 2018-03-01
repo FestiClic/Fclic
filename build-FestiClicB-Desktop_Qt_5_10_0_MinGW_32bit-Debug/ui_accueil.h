@@ -13,12 +13,14 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -41,6 +43,16 @@ public:
     QPushButton *aBtnMAJUtilisateur;
     QPushButton *aBtnSupprimUtilisateur;
     QWidget *tab_2;
+    QTableView *a2TabView;
+    QPushButton *a2BtnAfficher;
+    QComboBox *a2CBox;
+    QWidget *tab_3;
+    QWidget *tab_4;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
 
     void setupUi(QDialog *Accueil)
     {
@@ -49,7 +61,11 @@ public:
         Accueil->resize(1040, 756);
         tabWidget = new QTabWidget(Accueil);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
-        tabWidget->setGeometry(QRect(20, 20, 991, 711));
+        tabWidget->setGeometry(QRect(310, 20, 701, 711));
+        tabWidget->setLayoutDirection(Qt::LeftToRight);
+        tabWidget->setTabPosition(QTabWidget::North);
+        tabWidget->setUsesScrollButtons(true);
+        tabWidget->setDocumentMode(false);
         tab = new QWidget();
         tab->setObjectName(QStringLiteral("tab"));
         aLabEtat = new QLabel(tab);
@@ -98,9 +114,42 @@ public:
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        a2TabView = new QTableView(tab_2);
+        a2TabView->setObjectName(QStringLiteral("a2TabView"));
+        a2TabView->setGeometry(QRect(30, 170, 661, 471));
+        a2BtnAfficher = new QPushButton(tab_2);
+        a2BtnAfficher->setObjectName(QStringLiteral("a2BtnAfficher"));
+        a2BtnAfficher->setGeometry(QRect(40, 90, 75, 23));
+        a2CBox = new QComboBox(tab_2);
+        a2CBox->setObjectName(QStringLiteral("a2CBox"));
+        a2CBox->setGeometry(QRect(40, 30, 261, 22));
         tabWidget->addTab(tab_2, QString());
+        tab_3 = new QWidget();
+        tab_3->setObjectName(QStringLiteral("tab_3"));
+        tabWidget->addTab(tab_3, QString());
+        tab_4 = new QWidget();
+        tab_4->setObjectName(QStringLiteral("tab_4"));
+        tabWidget->addTab(tab_4, QString());
+        pushButton = new QPushButton(Accueil);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(0, 0, 301, 151));
+        pushButton_2 = new QPushButton(Accueil);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(0, 150, 301, 151));
+        pushButton_3 = new QPushButton(Accueil);
+        pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
+        pushButton_3->setGeometry(QRect(0, 300, 301, 151));
+        pushButton_4 = new QPushButton(Accueil);
+        pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
+        pushButton_4->setGeometry(QRect(0, 450, 301, 151));
+        pushButton_5 = new QPushButton(Accueil);
+        pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
+        pushButton_5->setGeometry(QRect(0, 600, 301, 151));
 
         retranslateUi(Accueil);
+
+        tabWidget->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(Accueil);
     } // setupUi
@@ -117,8 +166,16 @@ public:
         aBtnEnregistrerUtilisateur->setText(QApplication::translate("Accueil", "Enregistrer nouveau tilisateur", nullptr));
         aBtnMAJUtilisateur->setText(QApplication::translate("Accueil", "MAJ Utilisateur", nullptr));
         aBtnSupprimUtilisateur->setText(QApplication::translate("Accueil", "Supprimer utilisateur", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Accueil", "Tab 1", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Accueil", "Tab 2", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("Accueil", "Operateur", nullptr));
+        a2BtnAfficher->setText(QApplication::translate("Accueil", "Afficher", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("Accueil", "Liste utilisateur", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_3), QApplication::translate("Accueil", "Page", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_4), QApplication::translate("Accueil", "Page", nullptr));
+        pushButton->setText(QApplication::translate("Accueil", "G\303\251rer les clients ", nullptr));
+        pushButton_2->setText(QApplication::translate("Accueil", "G\303\251rer les salle ", nullptr));
+        pushButton_3->setText(QApplication::translate("Accueil", "G\303\251rer les spectacles ", nullptr));
+        pushButton_4->setText(QApplication::translate("Accueil", "Consulter les statistiques", nullptr));
+        pushButton_5->setText(QApplication::translate("Accueil", "Consulter les statistiques", nullptr));
     } // retranslateUi
 
 };

@@ -25,6 +25,8 @@ private slots:
 
     void on_aBtnSupprimUtilisateur_clicked();
 
+    void on_a2BtnAfficher_clicked();
+
 private:
     Ui::Accueil *ui;
 };
