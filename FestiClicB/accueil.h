@@ -27,6 +27,8 @@ private slots:
 
     void on_a2BtnAfficher_clicked();
 
+    void on_a2CBox_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::Accueil *ui;
 };

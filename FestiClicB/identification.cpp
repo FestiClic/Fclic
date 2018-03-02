@@ -23,7 +23,8 @@ Identification::Identification(QWidget *parent) :
 bool Identification::openConnexion()
 {
     maBaseDeDonnee=QSqlDatabase::addDatabase("QSQLITE");
-    maBaseDeDonnee.setDatabaseName("Z:/Projet C++/Codes/Fclic/database.db");
+    //maBaseDeDonnee.setDatabaseName("Z:/Projet C++/Codes/Fclic/database.db");  //CCI
+    maBaseDeDonnee.setDatabaseName("C:/Users/Mourad/Desktop/ADAI/Fclic/database.db");   //Maison
 
     if(maBaseDeDonnee.open())
     {

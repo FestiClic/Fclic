@@ -15,11 +15,11 @@ Accueil::Accueil(QWidget *parent) :
 
 
     //---------------
-    //Ajouter des éléments à ma comboBox
+/*    //Ajouter des éléments à ma comboBox
     ui->a2CBox->addItem("Votre choix");
     ui->a2CBox->addItem("Utilisateur");    //Pour test j'utlise la table utilisateur que je vais remplacer par d'autres tables
     ui->a2CBox->addItem("2");
-
+*/
     Identification connexion;
     //test de connexion de bdd sur la seconde fenêtre
     if(connexion.openConnexion())
@@ -175,11 +175,13 @@ void Accueil::on_a2BtnAfficher_clicked()
 //**    //Si ma comboBox contient ma val affecter les données concernées dans la TableView
 //**    if(ui->a2CBox->currentTextChanged("Utilisateur"))
 //**    {
-    query->prepare("SELECT IdUtilisateur, NomUtilisateur, PrenomUtilisateur FROM Utilisateurs");
+    //query->prepare("SELECT IdUtilisateur, NomUtilisateur, PrenomUtilisateur FROM Utilisateurs"); //requete TableView
+    query->prepare("SELECT NomUtilisateur FROM Utilisateurs"); //requete ComboBox
 
     query->exec();  //Execution requete
     modele->setQuery(*query);    //Récuperation des valeurs pointeur de requete
-    ui->a2TabView->setModel(modele);     //Envoyer les données dans la TableView
+    //ui->a2TabView->setModel(modele);     //Envoyer les données dans la TableView
+    ui->a2CBox->setModel(modele);   //Envoyer les données dans le comboBox
 
     //fermeture de la connexion
     connexion.closeConnexion();
@@ -187,3 +189,44 @@ void Accueil::on_a2BtnAfficher_clicked()
 //**    }
 }
 
+//Afficher les éléments d'un comboBox et faire apparaitre les données le concernant dans des champs
+void Accueil::on_a2CBox_currentIndexChanged(const QString &arg1)
+{
+    QString nom = ui->a2CBox->currentText();
+
+    Identification connexion; //création nouvel objet avec la classe identification
+    ///////////////////////////
+
+
+
+    if(!connexion.openConnexion())
+    {
+        qDebug()<<"Connexion vers la bdd est fermée";
+        return;
+    }
+
+    connexion.openConnexion();
+
+    //Je déclare un objet requete de QSqlQuery
+    QSqlQuery query;
+    //Je prepare ma requete
+    query.prepare("SELECT * FROM Utilisateurs WHERE NomUtilisateur '"+nom+"'");	//requete insertion de la valeur nom du combobox
+
+    if(query.exec())
+    {
+        while(query.next())		//tant que la requete reçoit des données je les affectes aux champs de texts
+        {
+            ui->aLEditNom->setText(query.value(2).toString()); //le champ nom reçoit la valeur de la requete qui reçoit la valeur de la colonne qui l'index 1==> 1ere colonne index 0,| col2 index 1 ...
+                                                                    // change to string
+            ui->aLEditPrenom->setText(query.value(3).toString());
+            ui->aLEditUsername->setText(query.value(5).toString());
+        }
+        connexion.closeConnexion();  //Fermeture de la connexion
+    }
+    else
+    {
+        //en cas de non execution de la requete
+        QMessageBox::critical(this,tr("Erreur::"),query.lastError().text());	//msgBox avec comme titre erreur et le text de l'erreur generé par la requete
+
+    }
+}
